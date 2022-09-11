@@ -2,6 +2,31 @@
 <search> 
   
   
+    
+    <entry>
+      <title>hello_world</title>
+      <link href="/2022/09/11/hello-world/"/>
+      <url>/2022/09/11/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>first blog with hexo + github</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> test </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hello_world </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
   
   
 </search>
