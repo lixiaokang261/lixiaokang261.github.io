@@ -20,20 +20,25 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
   </script>
 
-  <meta name="description" content="first blog with hexo + github">
+  <meta name="description" content="reference: Central pattern generator inspired control for adaptive walking of biped robots  AbstractThis paper deals with adaptive walking control of biped robots. Use CPGs to generate CoG trajectory">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hello_world">
-<meta property="og:url" content="http://example.com/2022/09/11/hello-world/index.html">
+<meta property="og:title" content="cpg_biped">
+<meta property="og:url" content="http://example.com/2022/09/12/cpg-biped/index.html">
 <meta property="og:site_name" content="Blog for Notes">
-<meta property="og:description" content="first blog with hexo + github">
+<meta property="og:description" content="reference: Central pattern generator inspired control for adaptive walking of biped robots  AbstractThis paper deals with adaptive walking control of biped robots. Use CPGs to generate CoG trajectory">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-09-11T06:44:28.000Z">
-<meta property="article:modified_time" content="2022-09-11T06:46:42.735Z">
+<meta property="og:image" content="http://example.com/images/control.png">
+<meta property="og:image" content="http://example.com/images/circle.png">
+<meta property="og:image" content="http://example.com/images/CoG.png">
+<meta property="og:image" content="http://example.com/images/y.png">
+<meta property="article:published_time" content="2022-09-12T01:15:31.000Z">
+<meta property="article:modified_time" content="2022-09-12T07:21:10.319Z">
 <meta property="article:author" content="Li Xiaokang">
-<meta property="article:tag" content="hello_world">
+<meta property="article:tag" content="CPG">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/control.png">
 
-<link rel="canonical" href="http://example.com/2022/09/11/hello-world/">
+<link rel="canonical" href="http://example.com/2022/09/12/cpg-biped/">
 
 
 <script id="page-configurations">
@@ -46,7 +51,7 @@
   };
 </script>
 
-  <title>hello_world | Blog for Notes</title>
+  <title>cpg_biped | Blog for Notes</title>
   
 
 
@@ -194,7 +199,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/11/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/12/cpg-biped/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/sea.jpeg">
@@ -207,7 +212,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          hello_world
+          cpg_biped
         </h1>
 
         <div class="post-meta">
@@ -218,16 +223,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-09-11 14:44:28 / Modified: 14:46:42" itemprop="dateCreated datePublished" datetime="2022-09-11T14:44:28+08:00">2022-09-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/test/" itemprop="url" rel="index"><span itemprop="name">test</span></a>
-                </span>
+              <time title="Created: 2022-09-12 09:15:31 / Modified: 15:21:10" itemprop="dateCreated datePublished" datetime="2022-09-12T09:15:31+08:00">2022-09-12</time>
             </span>
 
           
@@ -241,7 +237,55 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>first blog with hexo + github</p>
+        <blockquote>
+<p>reference: Central pattern generator inspired control for adaptive walking of biped robots</p>
+</blockquote>
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>This paper deals with adaptive walking control of biped robots. Use CPGs to generate CoG trajectory and a workspace trajectory modulation process. Also, the generator can use feedback to modulate CoG trajectories and workspace trajectories. A motion engine maps trajectories from workspace to joint space. We use NAO platform to confirm effctiveness of the proposed control strategy.</p>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>The main contributions of this paper:</p>
+<ol>
+<li>A CoG trajectory generation method is proposed based on CPGs, A mapping function is designed to map the output signals of CPGs to 3-D CoG trajectories online for a biped robot.</li>
+<li>A workspace trajectory modulator is designed based on CoG trajectories. The generated CoG trajectories are used to modulate the workspace trajectories to realize adaptive walking.</li>
+<li>Through the mutual entrainment of CPGs with the feedback signals of the robot, the adaptive CoG trajectories and workspace trajectories can be generated online.</li>
+<li>The proposed control strategy is validated using the biped robot NAO.</li>
+</ol>
+<h1 id="Control-Architecture"><a href="#Control-Architecture" class="headerlink" title="Control Architecture"></a>Control Architecture</h1><p><img src="/images/control.png" alt><br>The control system architecture consists of a trajectory generator and a motion engine. The paper uses feedback information along with function mapping to generate CoG trajectory. Then the CoG output can modulate workspace generator. And finally the workspace trajectory can generate the joint signals.</p>
+<h1 id="CPG-Inspired-Trajectory-Generator"><a href="#CPG-Inspired-Trajectory-Generator" class="headerlink" title="CPG-Inspired Trajectory Generator"></a>CPG-Inspired Trajectory Generator</h1><p>The mapping function is designed to transform the output of the CPGs to CoG trajectories. The amplitude and period of CoG trajectories can modulate the workspace trajectories. The objectives of the trajecories are as followed:</p>
+<ol>
+<li>Generation of CoG</li>
+<li>Generation of workspace trajectories</li>
+<li>Entraining with feedback information</li>
+</ol>
+<h2 id="A-CoG-Trajectory-Generation"><a href="#A-CoG-Trajectory-Generation" class="headerlink" title="A.CoG Trajectory Generation"></a>A.CoG Trajectory Generation</h2><p>1) CPG Model<br>In this paper, Kimura’s oscillator is modified and used as a CPG medel</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+T_{r} \dot{u}_{i}^{\{e, f\}}=&-u_{i}^{\{e, f\}}-w_{f e} r_{i}^{\{f, e\}}-\beta v_{i}^{\{e, f\}}+s_{0} \\
+&+\sum_{j=1}^{n} w_{i j} r_{j}^{\{e, f\}}+f e e d_{i}^{\{e, f\}} \\
+T_{a} \dot{v}_{i}^{\{e, f\}}=&-v_{i}^{\{e, f\}}+r_{i}^{\{e, f\}} \\
+r_{i}^{\{e, f\}}=& \max \left(u_{i}^{\{e, f\}}, 0\right) \\
+r_{i} &=-u_{i}^{\{e\}}+u_{i}^{\{f\}}
+\end{aligned}</script><p>2) Mapping Function Design</p>
+<script type="math/tex; mode=display">
+\begin{array}{l}
+\mathrm{CoG}_{x}=o f f_{x}+K_{x}\left(r_{1}+f(t)\right) \\
+\mathrm{CoG}_{y}=o f f_{y}+K_{y} r_{2} \\
+\mathrm{CoG}_{z}=o f f_{z}+K_{z} r_{3}
+\end{array}</script><p>where off are offsets, K are translation gains, and r are output signals of the CPG units, f(t) is the basic ramp function.</p>
+<h2 id="B-Workspace-Trajectory-Modulation"><a href="#B-Workspace-Trajectory-Modulation" class="headerlink" title="B.Workspace Trajectory Modulation"></a>B.Workspace Trajectory Modulation</h2><p>The trajectory of the swingfoot, as shown following, is generated by a rolling circle, which is represented by</p>
+<script type="math/tex; mode=display">\begin{array}{l}
+p_{x}=a(\theta-\sin \theta) \\
+p_{z}=a(1-\cos \theta)
+\end{array}</script><p><img src="/images/circle.png" alt><br>The position of each toe on the predesigned workspace trajectory is given as functions the the state of the CoG trajectory as follows:</p>
+<script type="math/tex; mode=display">
+\left\{\begin{aligned}
+x_{\text {locus }}(i)=& A m p_{\mathrm{CoG}_{\mathrm{x}}}(i)
+\times\left(\frac{2 \pi \cdot t_{s(\text { index })}}{t_{s}}-\sin \left(2 \pi \cdot t_{s(\text { index })} / t_{s}\right)\right) \\
+z_{\text {locus }}(i)=& A m p_{\operatorname{CoG}_{\mathrm{x}}}(i) \times\left(1-\cos \left(2 \pi \cdot t_{s(\text { index })} / t_{s}\right)\right)
+\end{aligned}\right.</script><p>Where $Amp_{Cog}$ is the step length(<em>in my view, it is the height of step, but the paper says the step length</em>).$t_s$ is the durning of swing phase. With the following pictures, we can understand more clearly.</p>
+<p><img src="/images/CoG.png" alt><br><img src="/images/y.png" alt><br>Thus, through the modulation of the amplitude $Amp_{CoG}$, the cyclic periods $t_c$ and the parameter $r_d$, we can modulate the step height, step length and duration periods of swinging and supporting phases.</p>
+<blockquote>
+<p>This paper uses the attitude angle as feed back to make the robot walk on a slope.</p>
+</blockquote>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>This paper uses CPGs(Kimura model) to generate reference CoG trajectory and then modulates the foot trajectory and finally generate the joint trajectory.</p>
 
     </div>
 
@@ -263,7 +307,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/hello-world/" rel="tag"># hello_world</a>
+              <a href="/tags/CPG/" rel="tag"># CPG</a>
           </div>
 
         
@@ -271,11 +315,11 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2022/09/12/cpg-biped/" rel="next" title="cpg_biped">
-      cpg_biped <i class="fa fa-chevron-right"></i>
+    <a href="/2022/09/11/hello-world/" rel="prev" title="hello_world">
+      <i class="fa fa-chevron-left"></i> hello_world
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -334,6 +378,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Control-Architecture"><span class="nav-number">3.</span> <span class="nav-text">Control Architecture</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CPG-Inspired-Trajectory-Generator"><span class="nav-number">4.</span> <span class="nav-text">CPG-Inspired Trajectory Generator</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-CoG-Trajectory-Generation"><span class="nav-number">4.1.</span> <span class="nav-text">A.CoG Trajectory Generation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-Workspace-Trajectory-Modulation"><span class="nav-number">4.2.</span> <span class="nav-text">B.Workspace Trajectory Modulation</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Conclusion"><span class="nav-number">5.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -454,6 +499,61 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
