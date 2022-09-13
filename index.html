@@ -133,7 +133,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives<span class="badge">2</span></a>
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives<span class="badge">3</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -190,6 +190,85 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/12/CPG-for-unstructured-terrain/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/sea.jpeg">
+      <meta itemprop="name" content="Li Xiaokang">
+      <meta itemprop="description" content="Some Notes on Academic Paper">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog for Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/12/CPG-for-unstructured-terrain/" class="post-title-link" itemprop="url">CPG_for_Unstructured_Terrain</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-09-12 15:50:17" itemprop="dateCreated datePublished" datetime="2022-09-12T15:50:17+08:00">2022-09-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-09-13 15:03:38" itemprop="dateModified" datetime="2022-09-13T15:03:38+08:00">2022-09-13</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>reference: Central pattern generator with inertial feedback for stable locomotion and climbing in unstructured terrain</p>
+</blockquote>
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>Incorporating sensory feedback for gait adaptation in CPG models can improve the locomotive performance of robots in challenging terrain. In this paper, we present a novel approach for incorporating inertial feedback into the CPG framework for locomotion on steep, unstructured terrain. That is, we adapt the limit cycle of each leg of the robot to produce locomotion and posture control. The control frame is validated on a hexapod robot to walk in a variety of steep, challenging terrains.<br></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/09/12/CPG-for-unstructured-terrain/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+<div>
+  
+</div>
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/12/cpg-biped/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -204,7 +283,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/09/12/cpg-biped/" class="post-title-link" itemprop="url">cpg_biped</a>
+            <a href="/2022/09/12/cpg-biped/" class="post-title-link" itemprop="url">Cpg_Biped</a>
         </h2>
 
         <div class="post-meta">
@@ -213,10 +292,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2022-09-12 09:15:31 / Modified: 15:21:10" itemprop="dateCreated datePublished" datetime="2022-09-12T09:15:31+08:00">2022-09-12</time>
+              <time title="Created: 2022-09-12 09:15:31" itemprop="dateCreated datePublished" datetime="2022-09-12T09:15:31+08:00">2022-09-12</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-09-13 14:57:01" itemprop="dateModified" datetime="2022-09-13T14:57:01+08:00">2022-09-13</time>
+              </span>
 
           
 
@@ -232,53 +317,15 @@
           <blockquote>
 <p>reference: Central pattern generator inspired control for adaptive walking of biped robots</p>
 </blockquote>
-<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>This paper deals with adaptive walking control of biped robots. Use CPGs to generate CoG trajectory and a workspace trajectory modulation process. Also, the generator can use feedback to modulate CoG trajectories and workspace trajectories. A motion engine maps trajectories from workspace to joint space. We use NAO platform to confirm effctiveness of the proposed control strategy.</p>
-<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>The main contributions of this paper:</p>
-<ol>
-<li>A CoG trajectory generation method is proposed based on CPGs, A mapping function is designed to map the output signals of CPGs to 3-D CoG trajectories online for a biped robot.</li>
-<li>A workspace trajectory modulator is designed based on CoG trajectories. The generated CoG trajectories are used to modulate the workspace trajectories to realize adaptive walking.</li>
-<li>Through the mutual entrainment of CPGs with the feedback signals of the robot, the adaptive CoG trajectories and workspace trajectories can be generated online.</li>
-<li>The proposed control strategy is validated using the biped robot NAO.</li>
-</ol>
-<h1 id="Control-Architecture"><a href="#Control-Architecture" class="headerlink" title="Control Architecture"></a>Control Architecture</h1><p><img src="/images/control.png" alt><br>The control system architecture consists of a trajectory generator and a motion engine. The paper uses feedback information along with function mapping to generate CoG trajectory. Then the CoG output can modulate workspace generator. And finally the workspace trajectory can generate the joint signals.</p>
-<h1 id="CPG-Inspired-Trajectory-Generator"><a href="#CPG-Inspired-Trajectory-Generator" class="headerlink" title="CPG-Inspired Trajectory Generator"></a>CPG-Inspired Trajectory Generator</h1><p>The mapping function is designed to transform the output of the CPGs to CoG trajectories. The amplitude and period of CoG trajectories can modulate the workspace trajectories. The objectives of the trajecories are as followed:</p>
-<ol>
-<li>Generation of CoG</li>
-<li>Generation of workspace trajectories</li>
-<li>Entraining with feedback information</li>
-</ol>
-<h2 id="A-CoG-Trajectory-Generation"><a href="#A-CoG-Trajectory-Generation" class="headerlink" title="A.CoG Trajectory Generation"></a>A.CoG Trajectory Generation</h2><p>1) CPG Model<br>In this paper, Kimura’s oscillator is modified and used as a CPG medel</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-T_{r} \dot{u}_{i}^{\{e, f\}}=&-u_{i}^{\{e, f\}}-w_{f e} r_{i}^{\{f, e\}}-\beta v_{i}^{\{e, f\}}+s_{0} \\
-&+\sum_{j=1}^{n} w_{i j} r_{j}^{\{e, f\}}+f e e d_{i}^{\{e, f\}} \\
-T_{a} \dot{v}_{i}^{\{e, f\}}=&-v_{i}^{\{e, f\}}+r_{i}^{\{e, f\}} \\
-r_{i}^{\{e, f\}}=& \max \left(u_{i}^{\{e, f\}}, 0\right) \\
-r_{i} &=-u_{i}^{\{e\}}+u_{i}^{\{f\}}
-\end{aligned}</script><p>2) Mapping Function Design</p>
-<script type="math/tex; mode=display">
-\begin{array}{l}
-\mathrm{CoG}_{x}=o f f_{x}+K_{x}\left(r_{1}+f(t)\right) \\
-\mathrm{CoG}_{y}=o f f_{y}+K_{y} r_{2} \\
-\mathrm{CoG}_{z}=o f f_{z}+K_{z} r_{3}
-\end{array}</script><p>where off are offsets, K are translation gains, and r are output signals of the CPG units, f(t) is the basic ramp function.</p>
-<h2 id="B-Workspace-Trajectory-Modulation"><a href="#B-Workspace-Trajectory-Modulation" class="headerlink" title="B.Workspace Trajectory Modulation"></a>B.Workspace Trajectory Modulation</h2><p>The trajectory of the swingfoot, as shown following, is generated by a rolling circle, which is represented by</p>
-<script type="math/tex; mode=display">\begin{array}{l}
-p_{x}=a(\theta-\sin \theta) \\
-p_{z}=a(1-\cos \theta)
-\end{array}</script><p><img src="/images/circle.png" alt><br>The position of each toe on the predesigned workspace trajectory is given as functions the the state of the CoG trajectory as follows:</p>
-<script type="math/tex; mode=display">
-\left\{\begin{aligned}
-x_{\text {locus }}(i)=& A m p_{\mathrm{CoG}_{\mathrm{x}}}(i)
-\times\left(\frac{2 \pi \cdot t_{s(\text { index })}}{t_{s}}-\sin \left(2 \pi \cdot t_{s(\text { index })} / t_{s}\right)\right) \\
-z_{\text {locus }}(i)=& A m p_{\operatorname{CoG}_{\mathrm{x}}}(i) \times\left(1-\cos \left(2 \pi \cdot t_{s(\text { index })} / t_{s}\right)\right)
-\end{aligned}\right.</script><p>Where $Amp_{Cog}$ is the step length(<em>in my view, it is the height of step, but the paper says the step length</em>).$t_s$ is the durning of swing phase. With the following pictures, we can understand more clearly.</p>
-<p><img src="/images/CoG.png" alt><br><img src="/images/y.png" alt><br>Thus, through the modulation of the amplitude $Amp_{CoG}$, the cyclic periods $t_c$ and the parameter $r_d$, we can modulate the step height, step length and duration periods of swinging and supporting phases.</p>
-<blockquote>
-<p>This paper uses the attitude angle as feed back to make the robot walk on a slope.</p>
-</blockquote>
-<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>This paper uses CPGs(Kimura model) to generate reference CoG trajectory and then modulates the foot trajectory and finally generate the joint trajectory.</p>
-
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>This paper deals with the adaptive walking control of biped robots. Use CPGs to generate CoG trajectory and a workspace trajectory modulation process. Also, the generator can use feedback to modulate CoG trajectories and workspace trajectories. A motion engine maps trajectories from workspace to joint space. We use the NAO platform to confirm the effectiveness of the proposed control strategy.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/09/12/cpg-biped/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -437,7 +484,7 @@ z_{\text {locus }}(i)=& A m p_{\operatorname{CoG}_{\mathrm{x}}}(i) \times\left(1
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
