@@ -16,6 +16,8 @@
             
             <tag> CPG </tag>
             
+            <tag> legged_robot </tag>
+            
         </tags>
       
     </entry>
@@ -34,6 +36,8 @@
         <tags>
             
             <tag> CPG </tag>
+            
+            <tag> legged_robot </tag>
             
         </tags>
       
