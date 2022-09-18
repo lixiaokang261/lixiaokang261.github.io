@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
+  </script>
+
+  <meta name="description" content="reference : CPG-based Locomotion Controller Design for a Boxfish-like Robot  AbstractThis paper focuses on a Central Pattern Generator-based locomotion controller design for a boxfish-like robot. The">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CPG_Boxfish">
+<meta property="og:url" content="http://example.com/2022/09/13/CPG4Boxfish/index.html">
+<meta property="og:site_name" content="Blog for Notes">
+<meta property="og:description" content="reference : CPG-based Locomotion Controller Design for a Boxfish-like Robot  AbstractThis paper focuses on a Central Pattern Generator-based locomotion controller design for a boxfish-like robot. The">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/CPG4Boxfish/box_fish.png">
+<meta property="og:image" content="http://example.com/images/CPG4Boxfish/fish_moving.png">
+<meta property="og:image" content="http://example.com/images/CPG4Boxfish/CPG.png">
+<meta property="og:image" content="http://example.com/images/CPG4Boxfish/mapping.png">
+<meta property="og:image" content="http://example.com/images/CPG4Boxfish/feedback.png">
+<meta property="article:published_time" content="2022-09-13T10:29:34.000Z">
+<meta property="article:modified_time" content="2022-09-18T10:29:07.502Z">
+<meta property="article:author" content="Li Xiaokang">
+<meta property="article:tag" content="CPG">
+<meta property="article:tag" content="Biofish">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/CPG4Boxfish/box_fish.png">
+
+<link rel="canonical" href="http://example.com/2022/09/13/CPG4Boxfish/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>CPG_Boxfish | Blog for Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Blog for Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags<span class="badge">3</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>Categories<span class="badge">1</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives<span class="badge">3</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/13/CPG4Boxfish/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/sea.jpeg">
+      <meta itemprop="name" content="Li Xiaokang">
+      <meta itemprop="description" content="Some Notes on Academic Paper">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog for Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CPG_Boxfish
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-09-13 18:29:34" itemprop="dateCreated datePublished" datetime="2022-09-13T18:29:34+08:00">2022-09-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-09-18 18:29:07" itemprop="dateModified" datetime="2022-09-18T18:29:07+08:00">2022-09-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Paper-notes/" itemprop="url" rel="index"><span itemprop="name">Paper notes</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>reference : CPG-based Locomotion Controller Design for a Boxfish-like Robot</p>
+</blockquote>
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>This paper focuses on a Central Pattern Generator-based locomotion controller design for a boxfish-like robot. The controller aims at flexible switching in multiple 3D swimming patterns and exact attitude control of yaw and roll such that the robot will swim more like a real boxfish. The CPG network comprises two layers, the lower layer is the network of coupled linear oscillators and the upper layer is the transition layer where locomotion stimuli are transformed into the higher-dimensional control parameters. The stability of the CPG network is proven to guarantee the stability of swimming patterns. In order to exact attitude control, based on this open-loop CPG network and the sensory feedback from IMU, a closed-loop CPG controller is advanced for yaw and roll control.<br><span id="more"></span></p>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Conventional locomotion controllers need to model the dynamics of the robot, which in most cases is too complicated to be established. Therefore, more researchers have taken inspiration from animal locomotion one of which is CPG.</p>
+<p>Research on the CPG-based can be divided into two categories: open-loop CPG and closed-loop CPG. Open-loop CPG controllers are always employed to generate multiple swimming behaviors and to realize smooth transitions between those related behaviors. In contrast, closed-loop CPG controllers integrate sensory feedback into the CPG network to regulate the CPG behaviors.</p>
+<p>This paper aims at designing a CPG-based locomotion controller, which endows the robot with abilities in flexible switching among multiple 3D swimming patterns and exact attitude control of the yaw and roll of the robot. The main contributions are: </p>
+<ol>
+<li>By importing  a transition layer, we use an open-loop CPG network to generate all typical 3D swimming patterns with for parameters. </li>
+<li>The stability of the CPG model is proven to ensure the intrinsic stability of swimming patterns. </li>
+<li>By employing sensory feedback from IMU, the paper proposes a closed-loop CPG controller to realize automatic control in the yaw and roll angles while swimming.<h1 id="Prototype-of-the-Boxfish-like-Robot"><a href="#Prototype-of-the-Boxfish-like-Robot" class="headerlink" title="Prototype of the Boxfish-like Robot"></a>Prototype of the Boxfish-like Robot</h1></li>
+</ol>
+<p>The figure below shows the mechanical configurations of the boxfish robot consisting of a roughly rectangular main body, a pair of pectoral fins and a caudal fin.<br><img src="/images/CPG4Boxfish/box_fish.png" alt><br>The robot is operated by an embedded Linux system and can work in two control modes: the manual mode and the autonomous model. In the manual mode, the robot is dominated by a remote controller via WiFi while in autonomous mode, the robot is able to swim by using its onboard sensor: the IMU and the camera.</p>
+<h1 id="CPG-based-Locomotion-Control"><a href="#CPG-based-Locomotion-Control" class="headerlink" title="CPG-based Locomotion Control"></a>CPG-based Locomotion Control</h1><p>This section contains:</p>
+<ul>
+<li>Simplified dynamic analysis of robotic fish</li>
+<li>Propose a two-layer CPG controller<br>Validity of the stability of the CPG model</li>
+<li>Propose a closed-loop CPG to realize automatic attitude control</li>
+</ul>
+<h2 id="Simplified-Dynamic-Analysis"><a href="#Simplified-Dynamic-Analysis" class="headerlink" title="Simplified Dynamic Analysis"></a>Simplified Dynamic Analysis</h2><p>In short, the robot has 8 modes which are moving forward, moving backward, turning,  pitching, rolling, braking and so on. More detail can be found in[1,2]<br><img src="/images/CPG4Boxfish/fish_moving.png" alt></p>
+<h2 id="Two-layer-Open-loop-CPG-Controller"><a href="#Two-layer-Open-loop-CPG-Controller" class="headerlink" title="Two-layer Open-loop CPG Controller"></a>Two-layer Open-loop CPG Controller</h2><p>This paper linearize the nonlinear phase oscillator in [3] which reads:</p>
+<script type="math/tex; mode=display">\begin{aligned}
+\dot{a}_{i} &=\alpha_{i}\left(A_{i}-a_{i}\right) \\
+\dot{x}_{i} &=\beta_{i}\left(X_{i}-x_{i}\right) \\
+\dot{\phi}_{i} &=2 \pi f_{i}+\sum_{j \in T_{i}} \mu_{i j}\left(\phi_{j}-\phi_{i}-\varphi_{i j}\right) \\
+\theta_{i} &=x_{i}+a_{i} \cos \left(\phi_{i}\right)
+\end{aligned}</script><p>In order to reduce the complicatedness of swimming pattern switching, a two-layer CPG network is proposed, as shown below.<br><img src="/images/CPG4Boxfish/CPG.png" alt></p>
+<p>The input drive received four commands from the upper controller. The $d_v$ is the robot speed. The $d_y, d_p, d_r$ regulate robot yawing, pitching and rolling motions respectively.</p>
+<p>Inspired by the swimming characteristics of the boxfish where the swimming speed is roughly linear with the frequency and amplitude, we use $f_i, A_i$ to control the speed of the robot. Moreover, with the input $d_v$, the robot performs two basic swimming modes which are the PF model and the PF+BCF model. The details are as follows:</p>
+<script type="math/tex; mode=display">
+f_{i}=\left\{\begin{array}{ll}
+c_{f, i}^{P F} d_{v}+f_{i, b}^{P F}, & \text { if } d_{v}^{i, \text { min }} \leq d_{v}<d_{v}^{\text {trans }} \\
+c_{f, i}^{P B C} d_{v}+f_{i, b}^{P B C}, & \text { if } d_{v}^{\text {trans }} \leq d_{v} \leq d_{v}^{i, \max } \\
+f_{i, \text { sat }}, & \text { otherwise. }
+\end{array}\right.</script><p>Nest, the combination of offset $X_i$’s is used for yaw, pitch and roll control of the robot. For the robot in this paper, the input drive $d_y$ turns the robot by providing offset of the caudal fin, $d_p$ denotes the attack angle of paired pectoral fins and makes the robot pitch and $d_r$ rolls the robot by taking the paired pectoral fins with a phase difference of $\pi$. The functional forms of $X_i$’s are given as:</p>
+<script type="math/tex; mode=display">
+X_{1}=\left\{\begin{array}{l}
+d_{p}+\operatorname{sgn}\left(1+(-1)^{\operatorname{sgn}\left(d_{p}\right)}\right) d_{r} \\
+\operatorname{if} d_{p} \in[-0.5 \pi, 0] \cup[0,0.5 \pi] \cup\{\pi,-\pi\} \\
+d_{r} \in\{-0.5 \pi,-\pi, 0.5 \pi, \pi\} \\
+0, \text { otherwise. }
+\end{array}\right.</script><script type="math/tex; mode=display">
+X_{2}=\left\{\begin{array}{l}
+d_{p}+\operatorname{sgn}\left(1+(-1)^{\operatorname{sgn}\left(d_{p}\right)}\right)\left(d_{r}-\pi \operatorname{sgn}\left(d_{r}\right)\right) \\
+\text { if } d_{p} \in[-0.5 \pi, 0] \cup[0,0.5 \pi] \cup\{\pi,-\pi\} \\
+d_{r} \in\{-0.5 \pi,-\pi, 0.5 \pi, \pi\} \\
+0, \text { otherwise. }
+\end{array}\right.</script><script type="math/tex; mode=display">X_{3}=\left\{\begin{array}{lc}
+d_{y,} & \text { if } d_{y} \in[-\pi / 3, \pi / 3] \\
+0, & \text { otherwise }
+\end{array}\right.</script><p>The mapping table from the control parameter and multiple swimming pattern is shown below<br><img src="/images/CPG4Boxfish/mapping.png" alt></p>
+<h2 id="Closed-loop-CPG-Model"><a href="#Closed-loop-CPG-Model" class="headerlink" title="Closed-loop CPG Model"></a>Closed-loop CPG Model</h2><p>To duplicate the ability of attitude stabilization in animals, we introduce sensory feedback into the CPG. In this paper, we only stabilize the yall and roll angles. As shown below, the closed-loop CPG contains four parts: the coupled oscillators, feedback signal generator, PID controller and onboard IMU. Correspondingly, the input drive becomes $d_{v}, d_{p}, d_{y}^{*}, d_{r}^{*}$ where $d_{y}^{*}, d_{r}^{*}$ denote the excepted yaw angle and roll angle respectively.</p>
+<p>The process of the closed-loop CPG controller is described as follows. The onboard IMU records the actual yaw angle $y_{IMU}$ and roll angle $r_{IMU}$. Then according to the attitude error between the actual and the expected, the PID controller generates two signals $\lambda_y, \lambda_r$ serving as the input of the feedback signal.<br><img src="/images/CPG4Boxfish/feedback.png" alt><br>Next, we will give a detailed description of the proposed closed-loop CPG network.<br>First, the coupled oscillators containing the feedback signals are designed as follows:</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\dot{a}_{i} &=\alpha\left(A_{i}-a_{i}+u_{i}\right) \\
+\dot{x}_{i} &=\beta\left(X_{i}-x_{i}+v_{i}\right) \\
+\dot{\phi}_{i} &=2 \pi f_{i}+\sum_{j \in T_{i}} \mu_{i j}\left(\phi_{j}-\phi_{i}-\varphi_{i j}\right) \\
+\theta_{i} &=x_{i}+a_{i} \cos \left(\phi_{i}\right)
+\end{aligned}</script><p>Then, based on the force analysis, the feedback signal generators are mathematically defined as follows:</p>
+<script type="math/tex; mode=display">\begin{array}{l}
+u_{1}=A_{1}\left(0.5-\lambda_{r}\right)-A_{1} \\
+u_{2}=A_{2}\left(0.5+\lambda_{r}\right)-A_{2} \\
+u_{3}=0 \\
+v_{1}=0.5 \pi \operatorname{sgn}\left(1+(-1)^{\operatorname{sgn}\left(d_{p}\right)}\right)-X_{1} \\
+v_{2}=0.5 \pi \operatorname{sgn}\left(1+(-1)^{\operatorname{sgn}\left(d_{p}\right)}\right)-X_{2} \\
+v_{3}=\lambda_{y}-X_{3}
+\end{array}</script><p>To stabilize the roll angle of the robot, we need to keep the produced forces on two sides the same magnitude. Thus, the offsets of the paired fins are equal( so $v_i$’s are the same ). By controlling the amplitude, we can control the speed, so we can control $u_i$.</p>
+<h1 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h1><p>This paper conducts experiments on the control of pitching, and rolling angle and also makes the robot track the yaw angle in a sine wave.  More details can be found in the paper</p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>In this paper, a two-layer CPG model is proposed. Using IMU as feedback, combined with the dynamic of the fish robot, the robot can perform specific locomotion in which the yaw angle, the roll angle and pitch angle can be controlled. The feedback signal can modulate the location of the limit cycle by changing the magnitude of offset($x_i$) and amplitude($a_i$)</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p>[1] Vision-based target tracking and collision avoidance for two autonomous<br>robotic fish</p>
+<p>[2]Dynamic modeling of an ostraciiform robotic fish based on angle of attack theory</p>
+<p>[3]Controlling swimming and crawling in a fish robot using a central pattern generator</p>
+
+    </div>
+
+    
+    
+    
+
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------That's all of this artical<i class="fa fa-hourglass-end"></i>Thank you for reading-------------</div>
+    
+</div>
+
+
+  
+</div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CPG/" rel="tag"># CPG</a>
+              <a href="/tags/Biofish/" rel="tag"># Biofish</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/09/12/CPG-for-unstructured-terrain/" rel="prev" title="CPG_for_Unstructured_Terrain">
+      <i class="fa fa-chevron-left"></i> CPG_for_Unstructured_Terrain
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Prototype-of-the-Boxfish-like-Robot"><span class="nav-number">3.</span> <span class="nav-text">Prototype of the Boxfish-like Robot</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CPG-based-Locomotion-Control"><span class="nav-number">4.</span> <span class="nav-text">CPG-based Locomotion Control</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Simplified-Dynamic-Analysis"><span class="nav-number">4.1.</span> <span class="nav-text">Simplified Dynamic Analysis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Two-layer-Open-loop-CPG-Controller"><span class="nav-number">4.2.</span> <span class="nav-text">Two-layer Open-loop CPG Controller</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Closed-loop-CPG-Model"><span class="nav-number">4.3.</span> <span class="nav-text">Closed-loop CPG Model</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Experiments"><span class="nav-number">5.</span> <span class="nav-text">Experiments</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Conclusion"><span class="nav-number">6.</span> <span class="nav-text">Conclusion</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">7.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Li Xiaokang"
+      src="/images/sea.jpeg">
+  <p class="site-author-name" itemprop="name">Li Xiaokang</p>
+  <div class="site-description" itemprop="description">Some Notes on Academic Paper</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Li Xiaokang</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+
+</html>

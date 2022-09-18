@@ -31,10 +31,10 @@
 <meta property="og:image" content="http://example.com/images/hexo/hexo_robot.png">
 <meta property="og:image" content="http://example.com/images/hexo/leg_config.png">
 <meta property="article:published_time" content="2022-09-12T07:50:17.000Z">
-<meta property="article:modified_time" content="2022-09-13T09:24:47.489Z">
+<meta property="article:modified_time" content="2022-09-13T12:10:47.940Z">
 <meta property="article:author" content="Li Xiaokang">
 <meta property="article:tag" content="CPG">
-<meta property="article:tag" content="legged_robot">
+<meta property="article:tag" content="Legged Robot">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/limit_cycle.png">
 
@@ -229,8 +229,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-09-13 17:24:47" itemprop="dateModified" datetime="2022-09-13T17:24:47+08:00">2022-09-13</time>
+                <time title="Modified: 2022-09-13 20:10:47" itemprop="dateModified" datetime="2022-09-13T20:10:47+08:00">2022-09-13</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Paper-notes/" itemprop="url" rel="index"><span itemprop="name">Paper notes</span></a>
+                </span>
+            </span>
 
           
 
@@ -255,7 +264,7 @@
 \dot{y}_{i}(t)=&+\omega \cdot x_{i}(t)+\gamma\left(\mu^{2}-\sqrt{x_{i}(t)^{2}+y_{i}(t)^{2}}\right) \cdot y_{i}(t) \\
 &+\left(\lambda \sum_{j} K_{i j} y_{j}(t)\right)
 \end{aligned}\right. \tag{1}</script><p>where $\mu$ defines the radius of the limit cycle,$\omega$ defines the angular frequency of oscillation, $\gamma$ defines the forcing to the limit cycle, $\lambda$ defines the coupling strength and K defines the gait by setting the phase relationship between legs.</p>
-<p>In CPGs, the limit cycle defines a closed path in the joint space, which leads to the trajectory of the robots’ end-effectors. In this work, the limit cycle is in the shape of superellipse, which reads:</p>
+<p>In CPG, the limit cycle defines a closed path in the joint space, which leads to the trajectory of the robots’ end-effectors. In this work, the limit cycle is in the shape of superellipse, which reads:</p>
 <script type="math/tex; mode=display">H(x, y)=\left|\frac{x}{a}\right|^{d}+\left|\frac{y}{b}\right|^{d}\tag{2}</script><p>When d =2, H is an elliptic limit cycle, whereas $d&gt;2$ provides a more rectangular limit cycle as d increases. In general, the choice of $d$ should be guided by the type of terrain the robot will evolve in: $d=2$ seems to allow quick and stable locomotion on flat ground, whereas $d=4$ seems better suited for rough or inclined terrain. The following figure compares $d=2$ and $d=4$.</p>
 <p><img src="/images/limit_cycle.png" alt></p>
 <p>Then the CPG model can employ the new limit cycle $H(x,y)$ and obtain:</p>
@@ -318,7 +327,7 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/CPG/" rel="tag"># CPG</a>
-              <a href="/tags/legged-robot/" rel="tag"># legged_robot</a>
+              <a href="/tags/Legged-Robot/" rel="tag"># Legged Robot</a>
           </div>
 
         
@@ -330,7 +339,10 @@
     <a href="/2022/09/12/cpg-biped/" rel="prev" title="Cpg_Biped">
       <i class="fa fa-chevron-left"></i> Cpg_Biped
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/09/13/CPG4Boxfish/" rel="next" title="CPG_Boxfish">
+      CPG_Boxfish <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
