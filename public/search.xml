@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>Closed-loop_CPG_Direction_Tracking</title>
+      <link href="/2022/09/19/Closed-loop-CPG-Direction-Tracking/"/>
+      <url>/2022/09/19/Closed-loop-CPG-Direction-Tracking/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>reference: Bioinspired Closed-loop CPG-based Control of a Robot Fish for Obstacle<br>Avoidance and Direction Tracking</p><h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>This paper presents a study on closed-loop CPG-based control of a robot fish for obstacle avoidance and direction tracking. The CPG model consists of four input parameters: the flapping amplitude, the flapping angular velocity, the flapping offset, and the time ratio between the phase and the restore phase in flapping. The sensors on the fish are three infrared sensors(IR) mounted on the left, front and right of the robot fish as well as an IMU. Four sets of experiments are presented, including avoiding a static obstacle, avoiding a moving obstacle, tracking designated directions and tracking a designated direction with an obstacle in the path.<br><span id="more"></span></p><h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>CPG is the natural way to generate rhythmic motion control signals. The combination of closed-loop and CPG on the robot is a novel way for improving propulsion efficiency and maneuverability. Yu et al. developed a CPG-based multi-joint robot fish with visual feedback control for avoiding obstacles and searching for tasks[1]. Korkmaz et al. tried to combine CPG, fuzzy logic and sensory feedback to control a robot fish with two links and conducted yaw and pitch control experiments[2]. Wang and Xie advanced a closed-loop CPG controller for the yaw and roll control of a boxfish-like robot[3]. Zhang et al. combined the advantages of inset wings and fish fins to achieve an agile robotic fish and designed a CPG model for obstacle avoiding[4]. Among these robot fishes, the active bodies are single-joint or multi-joint designs. However, there are few studies of closed-loop CPG control on robot fish with the wire-driven active body. The objective of this paper is to develop a closed-loop CPG-based control for obstacle avoidance.</p><h1 id="Design-of-the-robot-fish"><a href="#Design-of-the-robot-fish" class="headerlink" title="Design of the robot fish"></a>Design of the robot fish</h1><h2 id="Mechanical-design"><a href="#Mechanical-design" class="headerlink" title="Mechanical design"></a>Mechanical design</h2><p>The robot fish comprises three parts, namely a rigid head, a wire-driven active body, and a compliant tail. The rigid head is used to install electronic components, such as circuit board, battery and sensors. A pair of pectoral fins attached to the shaft control the ascent and descent of the robot fish. The active body has four links in which two spring plates are embedded. The compliant tail is fixed onto the last link.<br><img src="/images/wirefish/mechanical.png" alt></p><h2 id="Electronics"><a href="#Electronics" class="headerlink" title="Electronics"></a>Electronics</h2><ul><li>Battery: 7.4 V 1500mAH Ni-H battery.</li><li>Microcontroller: STM32F104</li><li>Radio Frequency wireless module: E62-433T20D</li><li>Pectoral fin: HS-5086WP sevomotor</li><li>Active body: SW-1210SG</li></ul></blockquote><h1 id="Closed-loop-CPG-based-control-structure-design"><a href="#Closed-loop-CPG-based-control-structure-design" class="headerlink" title="Closed-loop CPG-based control structure design"></a>Closed-loop CPG-based control structure design</h1><h2 id="CPG-control"><a href="#CPG-control" class="headerlink" title="CPG control"></a>CPG control</h2><p>The equations  are as follows:</p><script type="math/tex; mode=display">\begin{aligned}\ddot{b} &=k_{b}\left(0.25 k_{b}(B-b)-\dot{b}\right) \\\ddot{m} &=k_{m}\left(0.25 k_{m}(M-m)-\dot{m}\right), \\\dot{\phi} &=\left[\frac{(1+R)^{2}}{4 R}-\frac{R^{2}-1}{4 R} \operatorname{sign}(\sin \phi)\right] \omega, \\\alpha &=b+m \cos (\phi) \\\beta &=b+m \sin (\phi)\end{aligned}</script><p>where $M, B, \omega, R$ are four input parameters, and $\alpha$ is the only output parameter for controlling the flapping patterns of the active body.$R$ is time ratio between the restore phase and beat phase.</p><h2 id="Closed-loop-CPG-based-control"><a href="#Closed-loop-CPG-based-control" class="headerlink" title="Closed-loop CPG-based control"></a>Closed-loop CPG-based control</h2><p>The frame of the closed-loop CPG control system is shown below:<br><img src="/images/wirefish/Control.png" alt><br>On the whole picture, the control system uses IR sensors data and IMU data to change the parameter of CPG’s input, namely $M, \omega, B, R$ and the pitch angle of pectoral fin.</p><h3 id="Closed-loop-control-for-obstacle-avoidance"><a href="#Closed-loop-control-for-obstacle-avoidance" class="headerlink" title="Closed-loop control for obstacle avoidance"></a>Closed-loop control for obstacle avoidance</h3><p>Using the IR sensors, we can set a table of values to change the behaviors of CPG facing different situations. The table is shown below:<br><img src="/images/wirefish/table.png" alt></p><h3 id="Closed-loop-control-for-direction-tracking"><a href="#Closed-loop-control-for-direction-tracking" class="headerlink" title="Closed-loop control for direction tracking"></a>Closed-loop control for direction tracking</h3><p>From the frame of the control system, the input of direction tracking is the target yaw angle, and the feedback signal is the real-time yaw angle from IMU. However, the body is constantly swinging along with the approximate sinusoidal oscillation. We need a low-pass filter to get the real yaw angle. In the paper, they set $M,\omega,R$ to be $20, 2\pi, 1$ respectively. The yaw angle is obtained in the following equation:</p><script type="math/tex; mode=display">\begin{array}{c}\theta(t)=\frac{1}{N} \sum_{i=1}^{N} \theta_{i}(t) \\N=\frac{2 \pi}{\omega} f\end{array}</script><h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>In this paper, they propose a closed-loop CPG system to conduct obstacle avoidance and direction tracking. The feedback signal comes from three IR sensors and an IMU sensor. In all, after getting the dynamic of the robot, we can set parameters through target and feedback to modulate the behavior of CPG.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Paper notes </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CPG </tag>
+            
+            <tag> Closed-loop </tag>
+            
+            <tag> Biofish </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>CPG_Boxfish</title>
       <link href="/2022/09/13/CPG4Boxfish/"/>
       <url>/2022/09/13/CPG4Boxfish/</url>
@@ -21,6 +50,8 @@
         <tags>
             
             <tag> CPG </tag>
+            
+            <tag> Closed-loop </tag>
             
             <tag> Biofish </tag>
             
@@ -50,6 +81,8 @@
             <tag> CPG </tag>
             
             <tag> Legged Robot </tag>
+            
+            <tag> Closed-loop </tag>
             
         </tags>
       
