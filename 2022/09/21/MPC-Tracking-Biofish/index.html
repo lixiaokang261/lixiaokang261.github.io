@@ -20,26 +20,24 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
   </script>
 
-  <meta name="description" content="reference: Bioinspired Closed-loop CPG-based Control of a Robot Fish for ObstacleAvoidance and Direction Tracking AbstractThis paper presents a study on closed-loop CPG-based control of a robot fish">
+  <meta name="description" content="reference: Model predictive tracking control design for a robotic fish with controllable barycentre.  AbstractThis paper presents the dynamic modeling and MPC for a fin-actuated robot with a barycent">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Closed-loop_CPG_Direction_Tracking">
-<meta property="og:url" content="http://example.com/2022/09/19/Closed-loop-CPG-Direction-Tracking/index.html">
+<meta property="og:title" content="MPC_Tracking_Biofish">
+<meta property="og:url" content="http://example.com/2022/09/21/MPC-Tracking-Biofish/index.html">
 <meta property="og:site_name" content="Blog for Notes">
-<meta property="og:description" content="reference: Bioinspired Closed-loop CPG-based Control of a Robot Fish for ObstacleAvoidance and Direction Tracking AbstractThis paper presents a study on closed-loop CPG-based control of a robot fish">
+<meta property="og:description" content="reference: Model predictive tracking control design for a robotic fish with controllable barycentre.  AbstractThis paper presents the dynamic modeling and MPC for a fin-actuated robot with a barycent">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/images/wirefish/mechanical.png">
-<meta property="og:image" content="http://example.com/images/wirefish/Control.png">
-<meta property="og:image" content="http://example.com/images/wirefish/table.png">
-<meta property="article:published_time" content="2022-09-19T01:11:55.000Z">
-<meta property="article:modified_time" content="2022-09-19T03:04:32.870Z">
+<meta property="og:image" content="http://example.com/images/MPC_COG/fig1.png">
+<meta property="og:image" content="http://example.com/images/MPC_COG/equ1.png">
+<meta property="article:published_time" content="2022-09-21T01:23:27.000Z">
+<meta property="article:modified_time" content="2022-09-21T07:46:37.157Z">
 <meta property="article:author" content="Li Xiaokang">
-<meta property="article:tag" content="CPG">
+<meta property="article:tag" content="MPC">
 <meta property="article:tag" content="Biofish">
-<meta property="article:tag" content="Closed-loop">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/wirefish/mechanical.png">
+<meta name="twitter:image" content="http://example.com/images/MPC_COG/fig1.png">
 
-<link rel="canonical" href="http://example.com/2022/09/19/Closed-loop-CPG-Direction-Tracking/">
+<link rel="canonical" href="http://example.com/2022/09/21/MPC-Tracking-Biofish/">
 
 
 <script id="page-configurations">
@@ -52,7 +50,7 @@
   };
 </script>
 
-  <title>Closed-loop_CPG_Direction_Tracking | Blog for Notes</title>
+  <title>MPC_Tracking_Biofish | Blog for Notes</title>
   
 
 
@@ -200,7 +198,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/19/Closed-loop-CPG-Direction-Tracking/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/21/MPC-Tracking-Biofish/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/sea.jpeg">
@@ -213,7 +211,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Closed-loop_CPG_Direction_Tracking
+          MPC_Tracking_Biofish
         </h1>
 
         <div class="post-meta">
@@ -224,7 +222,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-09-19 09:11:55 / Modified: 11:04:32" itemprop="dateCreated datePublished" datetime="2022-09-19T09:11:55+08:00">2022-09-19</time>
+              <time title="Created: 2022-09-21 09:23:27 / Modified: 15:46:37" itemprop="dateCreated datePublished" datetime="2022-09-21T09:23:27+08:00">2022-09-21</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -248,35 +246,37 @@
 
       
         <blockquote>
-<p>reference: Bioinspired Closed-loop CPG-based Control of a Robot Fish for Obstacle<br>Avoidance and Direction Tracking</p>
-<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>This paper presents a study on closed-loop CPG-based control of a robot fish for obstacle avoidance and direction tracking. The CPG model consists of four input parameters: the flapping amplitude, the flapping angular velocity, the flapping offset, and the time ratio between the phase and the restore phase in flapping. The sensors on the fish are three infrared sensors(IR) mounted on the left, front and right of the robot fish as well as an IMU. Four sets of experiments are presented, including avoiding a static obstacle, avoiding a moving obstacle, tracking designated directions and tracking a designated direction with an obstacle in the path.<br><span id="more"></span></p>
-<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>CPG is the natural way to generate rhythmic motion control signals. The combination of closed-loop and CPG on the robot is a novel way for improving propulsion efficiency and maneuverability. Yu et al. developed a CPG-based multi-joint robot fish with visual feedback control for avoiding obstacles and searching for tasks[1]. Korkmaz et al. tried to combine CPG, fuzzy logic and sensory feedback to control a robot fish with two links and conducted yaw and pitch control experiments[2]. Wang and Xie advanced a closed-loop CPG controller for the yaw and roll control of a boxfish-like robot[3]. Zhang et al. combined the advantages of inset wings and fish fins to achieve an agile robotic fish and designed a CPG model for obstacle avoiding[4]. Among these robot fishes, the active bodies are single-joint or multi-joint designs. However, there are few studies of closed-loop CPG control on robot fish with the wire-driven active body. The objective of this paper is to develop a closed-loop CPG-based control for obstacle avoidance.</p>
-<h1 id="Design-of-the-robot-fish"><a href="#Design-of-the-robot-fish" class="headerlink" title="Design of the robot fish"></a>Design of the robot fish</h1><h2 id="Mechanical-design"><a href="#Mechanical-design" class="headerlink" title="Mechanical design"></a>Mechanical design</h2><p>The robot fish comprises three parts, namely a rigid head, a wire-driven active body, and a compliant tail. The rigid head is used to install electronic components, such as circuit board, battery and sensors. A pair of pectoral fins attached to the shaft control the ascent and descent of the robot fish. The active body has four links in which two spring plates are embedded. The compliant tail is fixed onto the last link.<br><img src="/images/wirefish/mechanical.png" alt></p>
-<h2 id="Electronics"><a href="#Electronics" class="headerlink" title="Electronics"></a>Electronics</h2><ul>
-<li>Battery: 7.4 V 1500mAH Ni-H battery.</li>
-<li>Microcontroller: STM32F104</li>
-<li>Radio Frequency wireless module: E62-433T20D</li>
-<li>Pectoral fin: HS-5086WP sevomotor</li>
-<li>Active body: SW-1210SG</li>
-</ul>
+<p>reference: Model predictive tracking control design for a robotic fish with controllable barycentre.</p>
 </blockquote>
-<h1 id="Closed-loop-CPG-based-control-structure-design"><a href="#Closed-loop-CPG-based-control-structure-design" class="headerlink" title="Closed-loop CPG-based control structure design"></a>Closed-loop CPG-based control structure design</h1><h2 id="CPG-control"><a href="#CPG-control" class="headerlink" title="CPG control"></a>CPG control</h2><p>The equations  are as follows:</p>
-<script type="math/tex; mode=display">\begin{aligned}
-\ddot{b} &=k_{b}\left(0.25 k_{b}(B-b)-\dot{b}\right) \\
-\ddot{m} &=k_{m}\left(0.25 k_{m}(M-m)-\dot{m}\right), \\
-\dot{\phi} &=\left[\frac{(1+R)^{2}}{4 R}-\frac{R^{2}-1}{4 R} \operatorname{sign}(\sin \phi)\right] \omega, \\
-\alpha &=b+m \cos (\phi) \\
-\beta &=b+m \sin (\phi)
-\end{aligned}</script><p>where $M, B, \omega, R$ are four input parameters, and $\alpha$ is the only output parameter for controlling the flapping patterns of the active body.$R$ is time ratio between the restore phase and beat phase.</p>
-<h2 id="Closed-loop-CPG-based-control"><a href="#Closed-loop-CPG-based-control" class="headerlink" title="Closed-loop CPG-based control"></a>Closed-loop CPG-based control</h2><p>The frame of the closed-loop CPG control system is shown below:<br><img src="/images/wirefish/Control.png" alt><br>On the whole picture, the control system uses IR sensors data and IMU data to change the parameter of CPG’s input, namely $M, \omega, B, R$ and the pitch angle of pectoral fin.</p>
-<h3 id="Closed-loop-control-for-obstacle-avoidance"><a href="#Closed-loop-control-for-obstacle-avoidance" class="headerlink" title="Closed-loop control for obstacle avoidance"></a>Closed-loop control for obstacle avoidance</h3><p>Using the IR sensors, we can set a table of values to change the behaviors of CPG facing different situations. The table is shown below:<br><img src="/images/wirefish/table.png" alt></p>
-<h3 id="Closed-loop-control-for-direction-tracking"><a href="#Closed-loop-control-for-direction-tracking" class="headerlink" title="Closed-loop control for direction tracking"></a>Closed-loop control for direction tracking</h3><p>From the frame of the control system, the input of direction tracking is the target yaw angle, and the feedback signal is the real-time yaw angle from IMU. However, the body is constantly swinging along with the approximate sinusoidal oscillation. We need a low-pass filter to get the real yaw angle. In the paper, they set $M,\omega,R$ to be $20, 2\pi, 1$ respectively. The yaw angle is obtained in the following equation:</p>
-<script type="math/tex; mode=display">
-\begin{array}{c}
-\theta(t)=\frac{1}{N} \sum_{i=1}^{N} \theta_{i}(t) \\
-N=\frac{2 \pi}{\omega} f
-\end{array}</script><h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>In this paper, they propose a closed-loop CPG system to conduct obstacle avoidance and direction tracking. The feedback signal comes from three IR sensors and an IMU sensor. In all, after getting the dynamic of the robot, we can set parameters through target and feedback to modulate the behavior of CPG.</p>
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p>[1] Design and control of an embedded vision guided robot fish with multiple control surfaces<br>[2] Locomotion control of a biomimetic robot fish based on closed loop sensory feedback CPG model.<br>[3] CPG-based locomotion controller design for a boxfish-like robot.<br>[4] Design and control of an agile robotic fish with integrative biomimetic mechanisms.</p>
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>This paper presents the dynamic modeling and MPC for a fin-actuated robot with a barycentre regulating mechanism in multiple motions. This paper contributes to trajectory tracking for an underwater robot with a controllable barycentre in multiple motions, which has been rarely explored.</p>
+<span id="more"></span>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>For underwater robots including ROV, AUV and bio-inspired underwater robots, how to precisely control the robots for tracking a given trajectory has always been a focus and difficulty and has attracted increasing attention. The robots in recent literature only conduct surface motion, without complex motions in 3D space. Besides, the robots have constant mass distributions, and it is more challenging for motion control underwater robots with interval moving mass.</p>
+<p>This paper focuses on investigating MPC for a robotic fish with a barycentre regulating mechanism in multiple motions. The main work contains:</p>
+<ul>
+<li>A dynamic model of the robotic fish is established </li>
+<li>A MPC algorithm is formulated to explore trajectory tracking</li>
+<li>Simulations of tracking rectangle trajectory, sine-like trajectory, ascending trajectory and spiral trajectory were conducted.</li>
+</ul>
+<h1 id="The-Robotic-Fish-with-the-Barycentre-Regulating-Mechanism"><a href="#The-Robotic-Fish-with-the-Barycentre-Regulating-Mechanism" class="headerlink" title="The Robotic Fish with the Barycentre Regulating Mechanism"></a>The Robotic Fish with the Barycentre Regulating Mechanism</h1><p>The structure of the robot is shown below. Motor 1 is used to generate propulsive force. Motor 2 is used for rotating the bracket and motor 3 is used to make the weight move along the direction parallel to the principal axis of the robotic fish.<br><img src="/images/MPC_COG/fig1.png" alt><br>For the 6-DOF motions of the robot fish, they can be expressed as:</p>
+<script type="math/tex; mode=display">M\dot{v}+C(v)v=\tau\tag{1}</script><p>where $v=[v_b, \omega_b]^T$ is the body-fixed linear and angular velocity.<br>The M takes the following form:</p>
+<script type="math/tex; mode=display">\mathbf{M}=\left[\begin{array}{cccccc}
+m & 0 & 0 & 0 & m z_{C_{m}} & -m y_{C_{m}} \\
+0 & m & 0 & -m z_{C_{m}} & 0 & m x_{C_{m}} \\
+0 & 0 & m & m y_{C_{m}} & -m x_{C_{m}} & 0 \\
+0 & -m z_{C_{m}} & m y_{C_{m}} & J_{x x} & -J_{x y} & -J_{x z} \\
+m z_{C_{m}} & 0 & -m x_{C_{m}} & -J_{y x} & J_{y y} & -J_{y z} \\
+-m y_{C_{m}} & m x_{C_{m}} & 0 & -J_{z x} & -J_{z y} & J_{z z}
+\end{array}\right]</script><p>And C takes the following form:</p>
+<script type="math/tex; mode=display">\mathbf{C}(\mathbf{v})=\left[\begin{array}{cc}
+\mathbf{0}_{3 \times 3} & -m \mathbf{S}\left(\mathbf{v}_{\mathbf{b}}\right)-m \mathbf{S}\left(\omega_{\mathbf{b}}\right) \mathbf{S}\left(\mathbf{r}_{\mathbf{C}_{\mathbf{m}}}\right) \\
+-m \mathbf{S}\left(\mathbf{v}_{\mathbf{b}}\right)+m \mathbf{S}\left(\mathbf{r}_{\mathbf{C}_{\mathbf{m}}}\right) \mathbf{S}\left(\omega_{\mathbf{b}}\right) & -\mathbf{S}\left(\mathbf{J} \omega_{\mathbf{b}}\right)
+\end{array}\right]</script><p>The concrete form of the force is shown below, where $F_{xb}, F_{yb}, F_{zb}$ are components of the total force. $M_{xb}, M_{yb}, M_{zb}$ are components of the total torque. More information can be found in [1].<br><img src="/images/MPC_COG/equ1.png" alt></p>
+<h1 id="MPC-structure"><a href="#MPC-structure" class="headerlink" title="MPC structure"></a>MPC structure</h1><p>Eq.(1) can be reformulated as:</p>
+<script type="math/tex; mode=display">\dot{v}=M^{-1}\tau-M^{-1}C(v)v</script><p>So we can rearrange the fomular as:</p>
+<script type="math/tex; mode=display">\dot{\vec{q}}(t)=f(\vec{q}(t), \vec{u}(t)), t \geq 0</script><p>Where $\vec{q}$ is the vector of state variable, $\vec{u}(t)$ indicates the control input. Then we can define the cost function:</p>
+<script type="math/tex; mode=display">J(q(\tau),U_(\tau))=\int_{t}^{t+T_p}( \left\|\bar{y}_{c}(\tau)-d(\tau)\right\|_{\mathbf{Q}}^{2})d\tau</script><p>Where $\bar{y}_c(\tau)$ is the control output, $d(\tau)$ is the desired control output and $Q$ is the weight matrix. Using this optimal function we can get the optimal input $u(t)$</p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>This paper uses the dynamic model of a robotic fish with a controllable barycentre combined with nonlinear MPC to conduct 3D trajectory tracking. The MPC exploited in this paper is a nonlinear continous MPC, which may be not fast enough to control robotic fish in real time.</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p>[1] Three-Dimensional Dynamic Modeling and Motion Analysis for an Active-Tail-Actuated Robotic Fish with Barycentre Regulating Mechanism</p>
 
     </div>
 
@@ -298,9 +298,8 @@ N=\frac{2 \pi}{\omega} f
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/CPG/" rel="tag"># CPG</a>
+              <a href="/tags/MPC/" rel="tag"># MPC</a>
               <a href="/tags/Biofish/" rel="tag"># Biofish</a>
-              <a href="/tags/Closed-loop/" rel="tag"># Closed-loop</a>
           </div>
 
         
@@ -309,13 +308,10 @@ N=\frac{2 \pi}{\omega} f
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/09/13/CPG4Boxfish/" rel="prev" title="CPG_Boxfish">
-      <i class="fa fa-chevron-left"></i> CPG_Boxfish
+    <a href="/2022/09/20/MPC_CPG_Biofish/" rel="prev" title="MPC_CPG_Biofish">
+      <i class="fa fa-chevron-left"></i> MPC_CPG_Biofish
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/09/19/Control-of-Biofish/" rel="next" title="Control_of_Biofish">
-      Control_of_Biofish <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -374,7 +370,7 @@ N=\frac{2 \pi}{\omega} f
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Design-of-the-robot-fish"><span class="nav-number">3.</span> <span class="nav-text">Design of the robot fish</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Mechanical-design"><span class="nav-number">3.1.</span> <span class="nav-text">Mechanical design</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Electronics"><span class="nav-number">3.2.</span> <span class="nav-text">Electronics</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Closed-loop-CPG-based-control-structure-design"><span class="nav-number">4.</span> <span class="nav-text">Closed-loop CPG-based control structure design</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CPG-control"><span class="nav-number">4.1.</span> <span class="nav-text">CPG control</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Closed-loop-CPG-based-control"><span class="nav-number">4.2.</span> <span class="nav-text">Closed-loop CPG-based control</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Closed-loop-control-for-obstacle-avoidance"><span class="nav-number">4.2.1.</span> <span class="nav-text">Closed-loop control for obstacle avoidance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Closed-loop-control-for-direction-tracking"><span class="nav-number">4.2.2.</span> <span class="nav-text">Closed-loop control for direction tracking</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Conclusion"><span class="nav-number">5.</span> <span class="nav-text">Conclusion</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">6.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-Robotic-Fish-with-the-Barycentre-Regulating-Mechanism"><span class="nav-number">3.</span> <span class="nav-text">The Robotic Fish with the Barycentre Regulating Mechanism</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MPC-structure"><span class="nav-number">4.</span> <span class="nav-text">MPC structure</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Conclusion"><span class="nav-number">5.</span> <span class="nav-text">Conclusion</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">6.</span> <span class="nav-text">Reference</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
