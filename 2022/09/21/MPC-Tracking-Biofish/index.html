@@ -30,7 +30,7 @@
 <meta property="og:image" content="http://example.com/images/MPC_COG/fig1.png">
 <meta property="og:image" content="http://example.com/images/MPC_COG/equ1.png">
 <meta property="article:published_time" content="2022-09-21T01:23:27.000Z">
-<meta property="article:modified_time" content="2022-09-21T07:46:37.157Z">
+<meta property="article:modified_time" content="2022-09-21T07:51:18.233Z">
 <meta property="article:author" content="Li Xiaokang">
 <meta property="article:tag" content="MPC">
 <meta property="article:tag" content="Biofish">
@@ -222,7 +222,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-09-21 09:23:27 / Modified: 15:46:37" itemprop="dateCreated datePublished" datetime="2022-09-21T09:23:27+08:00">2022-09-21</time>
+              <time title="Created: 2022-09-21 09:23:27 / Modified: 15:51:18" itemprop="dateCreated datePublished" datetime="2022-09-21T09:23:27+08:00">2022-09-21</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -272,10 +272,10 @@ m z_{C_{m}} & 0 & -m x_{C_{m}} & -J_{y x} & J_{y y} & -J_{y z} \\
 -m \mathbf{S}\left(\mathbf{v}_{\mathbf{b}}\right)+m \mathbf{S}\left(\mathbf{r}_{\mathbf{C}_{\mathbf{m}}}\right) \mathbf{S}\left(\omega_{\mathbf{b}}\right) & -\mathbf{S}\left(\mathbf{J} \omega_{\mathbf{b}}\right)
 \end{array}\right]</script><p>The concrete form of the force is shown below, where $F_{xb}, F_{yb}, F_{zb}$ are components of the total force. $M_{xb}, M_{yb}, M_{zb}$ are components of the total torque. More information can be found in [1].<br><img src="/images/MPC_COG/equ1.png" alt></p>
 <h1 id="MPC-structure"><a href="#MPC-structure" class="headerlink" title="MPC structure"></a>MPC structure</h1><p>Eq.(1) can be reformulated as:</p>
-<script type="math/tex; mode=display">\dot{v}=M^{-1}\tau-M^{-1}C(v)v</script><p>So we can rearrange the fomular as:</p>
+<script type="math/tex; mode=display">\dot{v}=M^{-1}\tau-M^{-1}C(v)v</script><p>So we can rearrange the fomula as:</p>
 <script type="math/tex; mode=display">\dot{\vec{q}}(t)=f(\vec{q}(t), \vec{u}(t)), t \geq 0</script><p>Where $\vec{q}$ is the vector of state variable, $\vec{u}(t)$ indicates the control input. Then we can define the cost function:</p>
 <script type="math/tex; mode=display">J(q(\tau),U_(\tau))=\int_{t}^{t+T_p}( \left\|\bar{y}_{c}(\tau)-d(\tau)\right\|_{\mathbf{Q}}^{2})d\tau</script><p>Where $\bar{y}_c(\tau)$ is the control output, $d(\tau)$ is the desired control output and $Q$ is the weight matrix. Using this optimal function we can get the optimal input $u(t)$</p>
-<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>This paper uses the dynamic model of a robotic fish with a controllable barycentre combined with nonlinear MPC to conduct 3D trajectory tracking. The MPC exploited in this paper is a nonlinear continous MPC, which may be not fast enough to control robotic fish in real time.</p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>This paper uses the dynamic model of a robotic fish with a controllable barycentre combined with nonlinear MPC to conduct 3D trajectory tracking. The MPC exploited in this paper is a nonlinear continuous MPC, which may be not fast enough to control robotic fish online.</p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p>[1] Three-Dimensional Dynamic Modeling and Motion Analysis for an Active-Tail-Actuated Robotic Fish with Barycentre Regulating Mechanism</p>
 
     </div>

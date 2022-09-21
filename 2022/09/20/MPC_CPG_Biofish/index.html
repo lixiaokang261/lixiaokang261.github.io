@@ -32,10 +32,10 @@
 <meta property="og:image" content="http://example.com/images/MPC_CPG/equation14.png">
 <meta property="og:image" content="http://example.com/images/MPC_CPG/fig6.png">
 <meta property="article:published_time" content="2022-09-20T09:02:31.115Z">
-<meta property="article:modified_time" content="2022-09-21T06:01:59.204Z">
+<meta property="article:modified_time" content="2022-09-21T07:50:42.748Z">
 <meta property="article:author" content="Li Xiaokang">
-<meta property="article:tag" content="CPG">
 <meta property="article:tag" content="MPC">
+<meta property="article:tag" content="CPG">
 <meta property="article:tag" content="Biofish">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/MPC_CPG/fish.png">
@@ -231,7 +231,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-09-21 14:01:59" itemprop="dateModified" datetime="2022-09-21T14:01:59+08:00">2022-09-21</time>
+                <time title="Modified: 2022-09-21 15:50:42" itemprop="dateModified" datetime="2022-09-21T15:50:42+08:00">2022-09-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -282,7 +282,7 @@ I_{z} \ddot{\varphi}=&-a_{5} \dot{x} \dot{\varphi}-a_{1} c H\left(L_{1}-0.5 L_{1
 &+h_{i+1}\left(\alpha_{i+1} \sin \phi_{i+1}+\left(\beta_{i+1}-b_{i+1}\right) \cos \phi_{i, i+1}\right)
 \end{aligned}</script><p>Where $\alpha_i,\beta_i$ are state variables of the i-th oscillator. $\omega_i, H_i$ represents the oscillation frequency and amplitude. $h_i, \phi_i$ represent the coupling factor and phase difference. $b_i$ represents the offset of state variable $\beta_i$ in the i-th oscillator.</p>
 <p>The CPG network is shown below. The output signals of the CPG are transmitted to the left pectoral fin, right pectoral fin and caudal fin the bionic fish. The upper controller adjusts the frequency and offset of the CPG network in real time. And by changing the frequency and offset of the pectoral fin and caudal fin, the swimming speed and angular velocity are controlled.</p>
-<h2 id="Design-of-the-MPC"><a href="#Design-of-the-MPC" class="headerlink" title="Design of the MPC"></a>Design of the MPC</h2><p>To ensure smoothness in the motion control process, this paper combines MPC and CPG to adjust the swimming gait in real time.</p>
+<h2 id="Design-of-the-MPC"><a href="#Design-of-the-MPC" class="headerlink" title="Design of the MPC"></a>Design of the MPC</h2><p>To ensure smoothness in the motion control process, this paper combines MPC and CPG to adjust the swimming gait online.</p>
 <h3 id="Error-Model"><a href="#Error-Model" class="headerlink" title="Error Model"></a>Error Model</h3><p>Eq.(1) shows that the system can be regarded as a control system with a control quantity $u(\omega, b)$ and a state quantity $\chi(\dot{y}, \dot{x}, \varphi, \dot{\varphi}, Y, X)$. The general form is </p>
 <script type="math/tex; mode=display">\dot{\chi}=f(\chi, u)</script><p>The reference trajectory satisfies the above equation, and the subscript $r$ is used to represent the reference quantity. So</p>
 <script type="math/tex; mode=display">\dot{\chi_r}=f(\chi_r, u)</script><p>We can use a Taylor series at the reference trajectory point and ignore the higher-order terms then yield:<br><img src="/images/MPC_CPG/equation14.png" alt></p>
@@ -320,8 +320,8 @@ J(k)=& \sum_{i=1}^{N_{\mathrm{p}}}\left\|\boldsymbol{\eta}(k+i \mid t)-\boldsymb
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/CPG/" rel="tag"># CPG</a>
               <a href="/tags/MPC/" rel="tag"># MPC</a>
+              <a href="/tags/CPG/" rel="tag"># CPG</a>
               <a href="/tags/Biofish/" rel="tag"># Biofish</a>
           </div>
 
